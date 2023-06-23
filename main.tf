@@ -1,4 +1,4 @@
-provider "ibm" {}
+
 /*resource "ibm_container_cluster" "cluster" {
   name              = "${var.cluster_name}${random_id.name.hex}"
   datacenter        = "${var.datacenter}"
@@ -20,10 +20,25 @@ resource "random_id" "name" {
 }*/
   
 data "ibm_container_cluster_config" "testacc_ds_cluster" {
-  cluster_name_id = "c2mftm7d02sqmqa0nf10"
-  config_dir      = "."
+  cluster_name_id = var.cluster_id
+  resource_group_id = var.resource_group_id
 }
-variable "kube_config_path" {
+
+variable "cluster_id" {
+  default = "ci4qhqbf0oglvsnk7qa0"
+}
+variable "resource_group_id" {
+  default = "ae605e4e90494f52bdfdcbb5de8af338"
+}
+
+variable "api_key" {
+  type = string
+}
+
+provider "ibm" {
+  ibmcloud_api_key = var.api_key
+}
+/*variable "kube_config_path" {
   default = "/tmp"
 }
 
@@ -38,11 +53,11 @@ echo "Run Kubectl commands"
  kubectl get pods
         BASH
   }
-}
+}*/
 terraform {
   required_providers {
     ibm = {
-      version = "1.36.0"
+      version = "1.54.0"
       source = "IBM-Cloud/ibm"
     }
   }

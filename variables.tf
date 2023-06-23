@@ -1,4 +1,4 @@
-variable "datacenter" {
+/*variable "datacenter" {
   default = "dal10"
 }
 
@@ -20,4 +20,4 @@ variable "public_vlan_id" {
 
 variable "cluster_name" {
   default = "clustermytest"
-}
+}*/
